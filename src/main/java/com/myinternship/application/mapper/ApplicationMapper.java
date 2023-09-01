@@ -1,6 +1,7 @@
 package com.myinternship.application.mapper;
 
-import com.myinternship.application.model.ModelOfApplications;
+import com.myinternship.application.model.ModelOfApplication;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,6 +9,9 @@ import org.apache.ibatis.annotations.Select;
 public interface ApplicationMapper {
 
     @Select("SELECT * FROM APPLICATIONTABLE")
-    ModelOfApplications[] selectApplications();
+    ModelOfApplication[] selectApplications();
+
+    @Insert("INSERT INTO APPLICATIONTABLE (id,name,identityNumber,address) VALUES (#{id},#{name},#{identityNumber},#{address})")
+    int insertApplication(ModelOfApplication modelOfApplications);
 
 }

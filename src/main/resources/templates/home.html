@@ -13,8 +13,34 @@
     </style>
 </head>
 <body>
-<h2 th:text="${message}">Application Page</h2>
+    <h2>    Application Page</h2>
     <div class="content">
+
+        <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
+
+        <form th:object="${modelOfApplication}" th:action="@{/home}" th:method="POST">
+            <div class="form-group">
+                <label for="exampleInputId">Id</label>
+                <input th:field="*{id}" name="id" type="input" class="form-control" id="exampleInputId" placeholder="ID">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput1">İsim</label>
+                <input th:field="*{name}" name="name" type="input" class="form-control" id="exampleInput1" placeholder="İsminiz">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput2">TC Kimlik Numarası</label>
+                <input th:field="*{identityNumber}" name="identityNumber" type="input" class="form-control" id="exampleInput2" placeholder="TC Kimlik Numaranız">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput3">Adres</label>
+                <input th:field="*{address}" name="address" type="input" class="form-control" id="exampleInput3" placeholder="Adresiniz">
+            </div>
+            <button type="submit" class="btn btn-primary">Gönder</button> <br/> <br/>
+        </form>
+
+
+
         <table class="table">
             <thead>
             <tr>
@@ -25,8 +51,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="modelOfApplication, iterator : ${modelOfApplications}">
-                <th th:text="${iterator.index +1}" scope="row" ></th>
+            <tr th:each="modelOfApplication : ${modelOfApplications}">
+                <th th:text="${modelOfApplication.id}" scope="row" ></th>
                 <td th:text="${modelOfApplication.name}"></td>
                 <td th:text="${modelOfApplication.identityNumber}"></td>
                 <td th:text="${modelOfApplication.address}"></td>

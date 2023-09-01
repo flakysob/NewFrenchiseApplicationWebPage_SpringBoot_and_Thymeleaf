@@ -1,7 +1,7 @@
 package com.myinternship.application.service;
 
 import com.myinternship.application.mapper.ApplicationMapper;
-import com.myinternship.application.model.ModelOfApplications;
+import com.myinternship.application.model.ModelOfApplication;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,9 +13,14 @@ public class ApplicationService {
         this.applicationMapper = applicationMapper;
     }
 
-    public ModelOfApplications[] getApplications(){
+    public ModelOfApplication[] getApplications(){
 
-        ModelOfApplications[] modelOfApplications = applicationMapper.selectApplications();
+        ModelOfApplication[] modelOfApplications = applicationMapper.selectApplications();
         return modelOfApplications;
+    }
+
+    public int addApplication(ModelOfApplication modelOfApplications){
+        return applicationMapper.insertApplication(modelOfApplications);
+
     }
 }

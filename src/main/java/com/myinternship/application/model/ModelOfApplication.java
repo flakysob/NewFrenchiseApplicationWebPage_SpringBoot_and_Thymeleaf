@@ -1,12 +1,12 @@
 package com.myinternship.application.model;
 
-public class ModelOfApplications {
+public class ModelOfApplication {
     private Integer id;
     private String name;
     private String identityNumber;
     private String address;
 
-    public ModelOfApplications(Integer id, String name, String identityNumber, String address) {
+    public ModelOfApplication(Integer id, String name, String identityNumber, String address) {
         this.id = id;
         this.name = name;
         this.identityNumber = identityNumber;

@@ -1,10 +1,11 @@
 package com.myinternship.application.controller;
 
-import com.myinternship.application.model.ModelOfApplications;
+import com.myinternship.application.model.ModelOfApplication;
 import com.myinternship.application.service.ApplicationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ApplicationController {
@@ -15,12 +16,27 @@ public class ApplicationController {
         this.applicationService = applicationService;
     }
 
+    @PostMapping("/home")
+    public String addApp(Model model, ModelOfApplication modelOfApplication){
+        int result = applicationService.addApplication(modelOfApplication);
+        if(result < 1)
+        {
+            model.addAttribute("errorMessage", String.format("%s kişisinin başvurusu eklenemedi.", modelOfApplication.getName()));
+        }
+        model.addAttribute("successMessage", String.format("%s kişisinin başvurusu eklendi.", modelOfApplication.getName()));
+
+        ModelOfApplication[] modelOfApplications = applicationService.getApplications();
+        model.addAttribute("modelOfApplications", modelOfApplications);
+
+        return "home";
+    }
+
     @GetMapping("/home")
-    public String getHome(Model model){
+    public String getApp(Model model, ModelOfApplication modelOfApplication){
         model.addAttribute("message","Application");
 
-        ModelOfApplications[] modelOfApplications = applicationService.getApplications();
-        model.addAttribute("modelOfApplications",modelOfApplications);
+        ModelOfApplication[] modelOfApplications = applicationService.getApplications();
+        model.addAttribute("modelOfApplications", modelOfApplications);
         return "home";
     }
 }
