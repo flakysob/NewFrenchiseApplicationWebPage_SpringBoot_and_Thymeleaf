@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .content{
+            max-width:500px;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="${message}">Application Page</h2>
+    <div class="content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">İsim</th>
+                <th scope="col">Kimlik Numarası</th>
+                <th scope="col">Adres</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="modelOfApplication, iterator : ${modelOfApplications}">
+                <th th:text="${iterator.index +1}" scope="row" ></th>
+                <td th:text="${modelOfApplication.name}"></td>
+                <td th:text="${modelOfApplication.identityNumber}"></td>
+                <td th:text="${modelOfApplication.address}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
