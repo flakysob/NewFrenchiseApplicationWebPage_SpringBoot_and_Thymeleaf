@@ -1,5 +1,5 @@
-INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address) VALUES (1,'a a','1','a');
-INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address) VALUES (2,'b b','2','b');
-INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address) VALUES (3,'c c','3','c');
-INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address) VALUES (4,'d d','4','d');
-INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address) VALUES (5,'e e','5','e');
+INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (1,'a a','1','a','05462345234', 'jsdhf@rthr.com','03.05.2000',false,'İlgi çekici.','Deneme','100.000','Teşekkürler');
+INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (2,'b b','2','b','02354745374', 'sdf@ddfv.com','03.05.2010',false,'Çekici.','Konum','200.000','Halledin');
+INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (3,'c c','3','c','06473786482', 'jsdgsdfsdhf@dqwdq.com','03.05.1980',false,'İlginç.','Deneme konum','300.000','Merhaba');
+INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (4,'d d','4','d','06476378523', 'jsdssdffhf@nytr.com','03.05.1990',false,'İlgilenmek gerekli.','Deneme konum','400.000','Kolay gelsin');
+INSERT INTO APPLICATIONTABLE(id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (5,'e e','5','e','06348638465', 'jssgsdhf@vers.com','03.05.1995',false,'İlgi.','Deneme konum','500.000','İyi günler');

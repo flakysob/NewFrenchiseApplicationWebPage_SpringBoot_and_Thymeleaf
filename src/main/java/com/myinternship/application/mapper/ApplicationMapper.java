@@ -11,7 +11,7 @@ public interface ApplicationMapper {
     @Select("SELECT * FROM APPLICATIONTABLE")
     ModelOfApplication[] selectApplications();
 
-    @Insert("INSERT INTO APPLICATIONTABLE (id,name,identityNumber,address) VALUES (#{id},#{name},#{identityNumber},#{address})")
+    @Insert("INSERT INTO APPLICATIONTABLE (id,name,identityNumber,address,phoneNumber,email,birthDate,hasExperience,choosingReason,selectedLocation,amount,additionalNotes) VALUES (#{id},#{name},#{identityNumber},#{address},#{phoneNumber},#{email},#{birthDate},#{hasExperience},#{choosingReason},#{selectedLocation},#{amount},#{additionalNotes})")
     int insertApplication(ModelOfApplication modelOfApplications);
 
 }
