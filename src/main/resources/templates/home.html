@@ -30,6 +30,7 @@
         .btn-primary {
             background-color: #007bff;
             border: none;
+            width: auto;
         }
         .btn-primary:hover {
             background-color: #0056b3;
@@ -44,109 +45,75 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>Başvuru Sayfası</h2>
-    </div>
-    <div class="container">
-        <div class="content">
-
-            <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
-            <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
-
-            <form th:object="${modelOfApplication}" th:action="@{/home}" th:method="POST">
-                <div class="form-group">
-                    <label for="exampleInputId">Id</label>
-                    <input th:field="*{id}" type="text" class="form-control" id="exampleInputId" placeholder="ID">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName">İsim</label>
-                    <input th:field="*{name}" type="text" class="form-control" id="exampleInputName" placeholder="İsminiz">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputIdentityNumber">TC Kimlik Numarası</label>
-                    <input th:field="*{identityNumber}" type="text" class="form-control" id="exampleInputIdentityNumber" placeholder="TC Kimlik Numaranız">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputAddress">Adres</label>
-                    <input th:field="*{address}" type="text" class="form-control" id="exampleInputAddress" placeholder="Adresiniz">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPhoneNumber">Telefon Numarası</label>
-                    <input th:field="*{phoneNumber}" type="text" class="form-control" id="exampleInputPhoneNumber" placeholder="Telefon Numaranız">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail">Email</label>
-                    <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail" placeholder="Emailiniz">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputBirthDate">Doğum Tarihi</label>
-                    <input th:field="*{birthDate}" type="date" class="form-control" id="exampleInputBirthDate">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputExperience">Deneyim Var mı?</label>
-                    <input th:field="*{hasExperience}" type="checkbox" class="form-control" id="exampleInputExperience">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputChoosingReason">Seçim Nedeniniz</label>
-                    <textarea th:field="*{choosingReason}" class="form-control" id="exampleInputChoosingReason" placeholder="Seçim nedeninizi açıklayın"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputSelectedLocation">Seçilen Lokasyon</label>
-                    <select th:field="*{selectedLocation}" class="form-control" id="exampleInputSelectedLocation">
-                        <option value="Option1">Seçenek 1</option>
-                        <option value="Option2">Seçenek 2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputAmount">Miktar</label>
-                    <input th:field="*{amount}" type="text" class="form-control" id="exampleInputAmount" placeholder="Miktar">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputAdditionalNotes">Ek Notlar</label>
-                    <textarea th:field="*{additionalNotes}" class="form-control" id="exampleInputAdditionalNotes" placeholder="Ek notlarınızı ekleyin"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Gönder</button>
-            </form>
-            <hr>
-            <h3>Başvurular</h3>
-            <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">İsim</th>
-                        <th scope="col">Kimlik Numarası</th>
-                        <th scope="col">Adres</th>
-                        <th scope="col">Telefon Numarası</th>
-                        <th scope="col">Mail Adresi</th>
-                        <th scope="col">Doğum Tarihi</th>
-                        <th scope="col">Perakende Deneyimi</th>
-                        <th scope="col">Lokumcu Baba'yı Tercih Etme Sebebi</th>
-                        <th scope="col">Tercih Edilen Konum</th>
-                        <th scope="col">Miktar</th>
-                        <th scope="col">Not:</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="modelOfApplication : ${modelOfApplications}">
-                        <th th:text="${modelOfApplication.id}" scope="row" ></th>
-                        <td th:text="${modelOfApplication.name}"></td>
-                        <td th:text="${modelOfApplication.identityNumber}"></td>
-                        <td th:text="${modelOfApplication.address}"></td>
-                        <td th:text="${modelOfApplication.phoneNumber}"></td>
-                        <td th:text="${modelOfApplication.email}"></td>
-                        <td th:text="${modelOfApplication.birthDate}"></td>
-                        <td th:text="${modelOfApplication.hasExperience ? 'Evet' : 'Hayır'}"></td>
-                        <td th:text="${modelOfApplication.choosingReason}"></td>
-                        <td th:text="${modelOfApplication.selectedLocation}"></td>
-                        <td th:text="${modelOfApplication.amount}"></td>
-                        <td th:text="${modelOfApplication.additionalNotes}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+<div class="header">
+    <h2>Yeni Başvuru</h2>
+</div>
+<div class="container">
+    <div class="content">
+        <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
+        <form th:object="${modelOfApplication}" th:action="@{/home}" th:method="POST">
+            <div class="form-group">
+                <label for="exampleInputId">Id</label>
+                <input th:field="*{id}" type="text" class="form-control" id="exampleInputId" placeholder="ID">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="exampleInputName">İsim</label>
+                <input th:field="*{name}" type="text" class="form-control" id="exampleInputName" placeholder="İsminiz">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputIdentityNumber">TC Kimlik Numarası</label>
+                <input th:field="*{identityNumber}" type="text" class="form-control" id="exampleInputIdentityNumber" placeholder="TC Kimlik Numaranız">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAddress">Adres</label>
+                <input th:field="*{address}" type="text" class="form-control" id="exampleInputAddress" placeholder="Adresiniz">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPhoneNumber">Telefon Numarası</label>
+                <input th:field="*{phoneNumber}" type="text" class="form-control" id="exampleInputPhoneNumber" placeholder="Telefon Numaranız">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email</label>
+                <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail" placeholder="Emailiniz">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputBirthDate">Doğum Tarihi</label>
+                <input th:field="*{birthDate}" type="date" class="form-control" id="exampleInputBirthDate">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputExperience">Deneyim Var mı?</label>
+                <input th:field="*{hasExperience}" type="checkbox" class="form-control" id="exampleInputExperience">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputChoosingReason">Seçim Nedeniniz</label>
+                <textarea th:field="*{choosingReason}" class="form-control" id="exampleInputChoosingReason" placeholder="Seçim nedeninizi açıklayın"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputSelectedLocation">Seçilen Lokasyon</label>
+                <select th:field="*{selectedLocation}" class="form-control" id="exampleInputSelectedLocation">
+                    <option value="Option1">Seçenek 1</option>
+                    <option value="Option2">Seçenek 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAmount">Miktar</label>
+                <input th:field="*{amount}" type="text" class="form-control" id="exampleInputAmount" placeholder="Miktar">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAdditionalNotes">Ek Notlar</label>
+                <textarea th:field="*{additionalNotes}" class="form-control" id="exampleInputAdditionalNotes" placeholder="Ek notlarınızı ekleyin"></textarea>
+            </div>
 
+            <div class="container">
+
+                <button type="submit" class="btn btn-primary">Gönder</button>
+                <a th:href="@{/getall}" class="btn btn-primary">Tüm Başvuruları Görüntüle</a>
+
+            </div>
+
+        </form>
     </div>
+</div>
 </body>
 </html>
