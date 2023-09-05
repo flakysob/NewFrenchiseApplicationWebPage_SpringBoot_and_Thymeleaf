@@ -22,6 +22,7 @@ public class ApplicationController {
         return false; // Eğer ID mevcutsa true dönmelidir
     }
 
+
     @PostMapping("/home")
     public String addApp(Model model, ModelOfApplication modelOfApplication){
         int result = applicationService.addApplication(modelOfApplication);
