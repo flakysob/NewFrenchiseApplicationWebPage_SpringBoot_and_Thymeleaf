@@ -42,6 +42,7 @@
         .table {
             width: 100%;
         }
+
     </style>
 </head>
 <body>
@@ -52,17 +53,21 @@
     <div class="content">
         <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
         <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
         <form th:object="${modelOfApplication}" th:action="@{/home}" th:method="POST">
             <div class="form-group">
                 <label for="exampleInputId">Id</label>
                 <input th:field="*{id}" type="text" class="form-control" id="exampleInputId" placeholder="ID">
             </div>
             <div class="form-group">
-                <label for="exampleInputName">İsim</label>
+                <label for="exampleInputName">İsminiz</label>
                 <input th:field="*{name}" type="text" class="form-control" id="exampleInputName" placeholder="İsminiz">
             </div>
             <div class="form-group">
-                <label for="exampleInputIdentityNumber">TC Kimlik Numarası</label>
+                <label for="exampleInputIdentityNumber">TC Kimlik Numaranız</label>
                 <input th:field="*{identityNumber}" type="text" class="form-control" id="exampleInputIdentityNumber" placeholder="TC Kimlik Numaranız">
             </div>
             <div class="form-group">
@@ -71,44 +76,46 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPhoneNumber">Telefon Numarası</label>
-                <input th:field="*{phoneNumber}" type="text" class="form-control" id="exampleInputPhoneNumber" placeholder="Telefon Numaranız">
+                <input th:field="*{phoneNumber}" type="tel" class="form-control" id="exampleInputPhoneNumber" placeholder="Telefon Numaranız" oninput="validatePhoneNumber(this)">
+                <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail">Email</label>
-                <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail" placeholder="Emailiniz">
+                <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail" placeholder="Emailiniz" oninput="validateEmail(this)">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label for="exampleInputBirthDate">Doğum Tarihi</label>
                 <input th:field="*{birthDate}" type="date" class="form-control" id="exampleInputBirthDate">
             </div>
             <div class="form-group">
-                <label for="exampleInputExperience">Deneyim Var mı?</label>
+                <label for="exampleInputExperience">Daha önce perakende satışı deneyiminiz var mı?</label>
                 <input th:field="*{hasExperience}" type="checkbox" class="form-control" id="exampleInputExperience">
             </div>
             <div class="form-group">
-                <label for="exampleInputChoosingReason">Seçim Nedeniniz</label>
+                <label for="exampleInputChoosingReason">Lokumcu Baba'yı Tercih Etme Sebebiniz Nedir?</label>
                 <textarea th:field="*{choosingReason}" class="form-control" id="exampleInputChoosingReason" placeholder="Seçim nedeninizi açıklayın"></textarea>
             </div>
             <div class="form-group">
-                <label for="exampleInputSelectedLocation">Seçilen Lokasyon</label>
+                <label for="exampleInputSelectedLocation">Seçtiğiniz Konum:</label>
                 <select th:field="*{selectedLocation}" class="form-control" id="exampleInputSelectedLocation">
                     <option value="Option1">Seçenek 1</option>
                     <option value="Option2">Seçenek 2</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputAmount">Miktar</label>
+                <label for="exampleInputAmount">Yatırım Miktarınız Ne Kadar?</label>
                 <input th:field="*{amount}" type="text" class="form-control" id="exampleInputAmount" placeholder="Miktar">
             </div>
             <div class="form-group">
-                <label for="exampleInputAdditionalNotes">Ek Notlar</label>
+                <label for="exampleInputAdditionalNotes">Eklemek İstedikleriniz</label>
                 <textarea th:field="*{additionalNotes}" class="form-control" id="exampleInputAdditionalNotes" placeholder="Ek notlarınızı ekleyin"></textarea>
             </div>
 
             <div class="container">
 
-                <button type="submit" class="btn btn-primary">Gönder</button>
-                <a th:href="@{/getall}" class="btn btn-primary">Tüm Başvuruları Görüntüle</a>
+                <button type="submit" class="btn btn-primary">Başvuruyu tamamla, kaydet</button>
+                <a th:href="@{/getall}" class="btn btn-primary">Tüm başvuruları görüntüle</a>
 
             </div>
 
@@ -116,4 +123,28 @@
     </div>
 </div>
 </body>
+<script>
+    function validatePhoneNumber(input) {
+        var phoneNumber = input.value.replace(/\D/g, ''); // Sadece rakamları al
+        var phoneNumberPattern = /^\d{10}$/; // 10 haneli sayı kabul edelim
+
+        if (phoneNumberPattern.test(phoneNumber)) {
+            input.setCustomValidity(''); // Geçerli telefon numarası
+        } else {
+            input.setCustomValidity('Lütfen 10 haneli bir telefon numarası girin.');
+        }
+    }
+</script>
+<script>
+    function validateEmail(input) {
+        var email = input.value;
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (emailPattern.test(email)) {
+            input.setCustomValidity(''); // Geçerli e-posta adresi
+        } else {
+            input.setCustomValidity('Lütfen geçerli bir email adresi girin.');
+        }
+    }
+</script>
 </html>

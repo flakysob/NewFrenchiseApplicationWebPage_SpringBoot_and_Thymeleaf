@@ -16,6 +16,12 @@ public class ApplicationController {
         this.applicationService = applicationService;
     }
 
+    private boolean checkIfIdExists(String id) {
+        // Veritabanında veya başka bir kaynakta ID kontrolü yapabilirsiniz
+        // Bu sadece örnek bir metoddur
+        return false; // Eğer ID mevcutsa true dönmelidir
+    }
+
     @PostMapping("/home")
     public String addApp(Model model, ModelOfApplication modelOfApplication){
         int result = applicationService.addApplication(modelOfApplication);
